@@ -1,6 +1,4 @@
-[project]
-name = "python-test"
-version = "0.1.0"
-dependencies = [
-    "fastapi",
-]
+name = "a"
+main = "worker.py"
+compatibility_date = "2026-07-01"
+compatibility_flags = [ "python_workers" ]
