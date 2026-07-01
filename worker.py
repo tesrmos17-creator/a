@@ -1,8 +1,8 @@
-# src/worker.py (Murni Native - Tanpa Impor FastAPI)
+# worker.py (Murni Native - Tanpa FastAPI / Tanpa Library Eksternal)
 
 class Default:
     async def fetch(self, request, env, ctx):
-        # Membaca jalur URL secara manual
+        # Mengambil informasi URL yang diakses oleh pengguna
         url = request.url
         
         # 1. Endpoint Ambil Semua Katalog Film
@@ -11,7 +11,7 @@ class Default:
             result = await env.DB.prepare(query).all()
             return Response.json(result)
             
-        # 2. Endpoint Simpan Progress Nonton
+        # 2. Endpoint Simpan Progress Durasi Menonton
         elif "/api/history" in url and request.method == "POST":
             payload = await request.json()
             query = """
@@ -22,7 +22,7 @@ class Default:
                 payload.get("episode_id"), 
                 payload.get("progress_seconds")
             ).run()
-            return Response.json({"status": "success"})
+            return Response.json({"status": "success", "message": "Progress berhasil disimpan!"})
             
         # 3. Tampilan Halaman Utama Default
-        return Response.new("Backend Python Streaming Aktif!")
+        return Response.new("Backend Python Web Streaming Anda Sudah Aktif!")
