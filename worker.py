@@ -2,7 +2,6 @@
 
 class Default:
     async def fetch(self, request, env, ctx):
-        # Mengambil informasi URL yang diakses oleh pengguna
         url = request.url
         
         # 1. Endpoint Ambil Semua Katalog Film
@@ -22,7 +21,7 @@ class Default:
                 payload.get("episode_id"), 
                 payload.get("progress_seconds")
             ).run()
-            return Response.json({"status": "success", "message": "Progress berhasil disimpan!"})
+            return Response.json({"status": "success"})
             
         # 3. Tampilan Halaman Utama Default
         return Response.new("Backend Python Web Streaming Anda Sudah Aktif!")
